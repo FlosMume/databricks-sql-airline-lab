@@ -1,0 +1,10 @@
+name: sql-format
+on: [push, pull_request]
+
+jobs:
+  fmt:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Placeholder SQL formatting step
+        run: echo "Add sqlfluff or formatter here"
