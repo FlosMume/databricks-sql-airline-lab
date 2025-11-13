@@ -1,0 +1,9 @@
+{
+  "name": "Flight Orchestration Workflow",
+  "tasks": [
+    { "task_key": "ingest_airports_bronze", "type": "sql", "sql_task": { "query_name": "airports ST" } },
+    { "task_key": "replace_airports_mv", "type": "sql", "depends_on": ["ingest_airports_bronze"], "sql_task": { "query_name": "airports MV" } },
+    { "task_key": "check_atl_alert", "type": "sql", "depends_on": ["replace_airports_mv"], "sql_task": { "alert_name": "ATL Flight Alert" } },
+    { "task_key": "refresh_flight_dashboard", "type": "dashboard", "depends_on": ["check_atl_alert"], "dashboard_task": { "dashboard_name": "Flight Data Dashboard" } }
+  ]
+}
